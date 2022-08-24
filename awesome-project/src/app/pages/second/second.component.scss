@@ -1,0 +1,21 @@
+.second-page-wrapper {
+    .top-section {
+        margin-bottom: 20px;
+
+        .items-block {
+            display: flex;
+            flex-direction: row;
+            margin-top: 2rem;
+
+            .item {
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .table-wrapper {
+        table {
+            width: 100%;
+        }
+    }
+}
