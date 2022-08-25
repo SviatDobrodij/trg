@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecondComponent } from './second.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class SecondModule { }
