@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as mockData from '../../../locations.json';
 
 export interface PeriodicElement {
   name: string;
@@ -19,12 +20,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
+
+
 @Component({
   selector: 'app-second',
   templateUrl: './second.component.html',
   styleUrls: ['./second.component.scss']
 })
-export class SecondComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+export class SecondComponent implements OnInit {
+
+  displayedColumns: string[] = ['position', 'name', 'longitude', 'latitude', 'edit'];
   dataSource = ELEMENT_DATA;
+
+  ngOnInit(): void {
+    console.log('json data ====>>>> ', {...mockData}.data);
+  }
 }
