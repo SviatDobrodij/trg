@@ -1,0 +1,9 @@
+.dialog-wrapper {
+    max-width: 400px;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+}

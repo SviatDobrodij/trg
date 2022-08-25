@@ -1,1 +1,17 @@
-<p>modal-form works!</p>
+<div class="dialog-wrapper">
+  <h3 class="title">Add new location</h3>
+  <form class="form" [formGroup]="location">
+    <mat-label>Enter name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" required />
+
+    <mat-label>Enter longitude</mat-label>
+    <input matInput placeholder="longitude" formControlName="longitude" required />
+
+    <mat-label>Enter latitude</mat-label>
+    <input matInput placeholder="latitude" formControlName="latitude" required />
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onOkClick()">Ok</button>
+  </div>
+</div>

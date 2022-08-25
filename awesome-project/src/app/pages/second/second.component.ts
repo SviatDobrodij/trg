@@ -24,12 +24,14 @@ export class SecondComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef: MatDialogRef<unknown, any> = this.dialog.open(ModalFormComponent, {
-      width: '250px',
+      width: '80%',
       data: { },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        console.log('The dialog was closed ', result.data);
+      }
       // this.animal = result;
     });
   }

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ModalFormComponent } from './components/modal-form/modal-form.component';
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,9 @@ import { ModalFormComponent } from './components/modal-form/modal-form.component
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
