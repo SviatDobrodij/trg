@@ -22,12 +22,4 @@ export class SecondService implements ISecondService {
   public sort(): void {
     //
   }
-
-  public convertDataFormat(locationData: ILocationFormData): ILocationData {
-    const coordinates: number[] = [];
-    coordinates.push(+locationData.latitude);
-    coordinates.push(+locationData.longitude);
-
-    return { name: locationData.name, coordinates }
-  }
 }

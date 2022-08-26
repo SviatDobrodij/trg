@@ -1,7 +1,7 @@
 <div class="second-page-wrapper">
   <div class="top-section">
     <div class="items-block">
-      <button class="item" (click)="openDialog()">create location</button>
+      <button class="item" (click)="openDialog('add')">create location</button>
       <button class="item">search</button>
     </div>
   </div>
@@ -37,7 +37,9 @@
       <!-- Edit Column -->
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"><mat-icon>edit</mat-icon></td>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <mat-icon (click)="openDialog('edit', element, i)">edit</mat-icon>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

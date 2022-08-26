@@ -1,37 +1,46 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ILocationFormData } from '../../interfaces/locations.interface';
+import { DataTransformService } from '../../services/data-transform.service';
+import { ILocationModalData } from '../../interfaces/location-modal-data.interface';
 
 @Component({
   selector: 'app-modal-form',
   templateUrl: './modal-form.component.html',
   styleUrls: ['./modal-form.component.scss']
 })
-export class ModalFormComponent implements OnInit{
-  location!: FormGroup;
-  locationData: ILocationFormData = {
+export class ModalFormComponent implements OnInit {
+  public location!: FormGroup;
+  private locationData: ILocationFormData = {
     name: '',
     latitude: '',
     longitude: ''
   };
 
   constructor(
+    private dataTransformService: DataTransformService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ModalFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: object,
+    @Optional() @Inject(MAT_DIALOG_DATA) public dataToEdit: ILocationModalData,
+
   ) { }
 
   ngOnInit(): void {
+    if (this.dataToEdit && this.dataToEdit.rowData) {
+      const formatedData: ILocationFormData = this.dataTransformService.convertToModalFormat(this.dataToEdit.rowData);
+      this.locationData = { ...formatedData };
+    }
+
     this.initializeForm();
   }
 
-  public onNoClick(): void {
-    this.dialogRef.close();
+  public onCancelClick(): void {
+    this.dialogRef.close({event: 'close'});
   }
 
-  public onOkClick(): void {
-    this.dialogRef.close({ event: 'close', data: this.location.value });
+  public onDoActionClick(): void {
+    this.dialogRef.close({ event: this.dataToEdit.action, data: this.location.value });
   }
 
   private initializeForm(): void {
