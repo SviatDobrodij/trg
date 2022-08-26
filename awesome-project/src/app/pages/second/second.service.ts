@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ILocationData, ILocationFormData } from 'src/app/shared/interfaces/locations.interface';
 import { ISecondService } from './interfaces/second-service.interface';
 
 @Injectable({

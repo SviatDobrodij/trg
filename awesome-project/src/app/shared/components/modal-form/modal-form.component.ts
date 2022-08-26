@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ILocationFormData } from '../../interfaces/locations.interface';
 import { DataTransformService } from '../../services/data-transform.service';
 import { ILocationModalData } from '../../interfaces/location-modal-data.interface';
@@ -36,7 +36,7 @@ export class ModalFormComponent implements OnInit {
   }
 
   public onCancelClick(): void {
-    this.dialogRef.close({event: 'close'});
+    this.dialogRef.close({ event: 'close' });
   }
 
   public onDoActionClick(): void {
@@ -44,6 +44,16 @@ export class ModalFormComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    this.location = this.fb.group({ ...this.locationData })
+    this.location = this.fb.group({
+      name: new FormControl(this.locationData.name, [
+        Validators.required
+      ]),
+      latitude: new FormControl(this.locationData.latitude, [
+        Validators.required,
+      ]),
+      longitude: new FormControl(this.locationData.longitude, [
+        Validators.required,
+      ]),
+     })
   }
 }

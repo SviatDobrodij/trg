@@ -36,7 +36,6 @@ export class SecondComponent {
     });
 
     dialogRef.afterClosed().subscribe((result?: IDataFromModal) => {
-      console.log('result ===>> ', result);
       if (result?.data) {
         switch (result.event) {
           case 'add':
