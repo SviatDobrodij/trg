@@ -1,8 +1,6 @@
 <div class="main-wrapper">
   <div class="left-column" [ngStyle]="{'display': isInfoWindowOpen ? 'block' : 'none'}">
-    <h3>Title</h3>
-    <p>lant: <span>32.3434</span></p>
-    <p>lant: <span>32.3434</span></p>
+    <app-marker-info [data]="selectedMarkerInfo"></app-marker-info>
   </div>
   <div class="map-wrapper">
     <google-map width="auto" height="95vh" [zoom]="zoom" [center]="center">
@@ -10,11 +8,11 @@
         #mapMarker="mapMarker"
         *ngFor="let marker of markers"
         [position]="marker.position"
-        (mapClick)="openInfo(mapMarker)"
+        (mapClick)="openInfo(mapMarker, marker)"
       >
       </map-marker>
       <map-info-window (closeclick)="onInfoWindowClose()">
-        Hello Google Maps
+        <span *ngIf="selectedMarkerInfo">{{ selectedMarkerInfo.label.text }}</span>
       </map-info-window>
     </google-map>
   </div>

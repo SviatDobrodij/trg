@@ -6,11 +6,13 @@ import { ModalFormComponent } from './components/modal-form/modal-form.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MarkerInfoComponent } from './components/marker-info/marker-info.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    ModalFormComponent
+    ModalFormComponent,
+    MarkerInfoComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   exports: [
     HeaderComponent,
-    ModalFormComponent
+    ModalFormComponent,
+    MarkerInfoComponent
   ]
 })
 export class SharedModule { }
