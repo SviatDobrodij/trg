@@ -1,12 +1,21 @@
 <div class="main-wrapper">
-  <google-map width="auto" height="95vh" [zoom]="zoom" [center]="center">
-    <map-marker
-      #somemarker="mapMarker"
-      *ngFor="let marker of markers"
-      [position]="marker.position"
-      (mapClick)="openInfo(somemarker)"
-    >
-    </map-marker>
-    <map-info-window>Hello Google Maps</map-info-window>
-  </google-map>
+  <div class="left-column" [ngStyle]="{'display': isInfoWindowOpen ? 'block' : 'none'}">
+    <h3>Title</h3>
+    <p>lant: <span>32.3434</span></p>
+    <p>lant: <span>32.3434</span></p>
+  </div>
+  <div class="map-wrapper">
+    <google-map width="auto" height="95vh" [zoom]="zoom" [center]="center">
+      <map-marker
+        #mapMarker="mapMarker"
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        (mapClick)="openInfo(mapMarker)"
+      >
+      </map-marker>
+      <map-info-window (closeclick)="onInfoWindowClose()">
+        Hello Google Maps
+      </map-info-window>
+    </google-map>
+  </div>
 </div>

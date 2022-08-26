@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
     lng: this.dataSource[0].coordinates[1]
   };
   public markers: IMarker[] = [];
+  public isInfoWindowOpen: boolean = false;
 
   constructor() {
     //
@@ -43,5 +44,10 @@ export class MainComponent implements OnInit {
 
   public openInfo(marker: MapAnchorPoint): void {
     this.infoWindow?.open(marker);
+    this.isInfoWindowOpen = true;
+  }
+
+  public onInfoWindowClose(): void {
+    this.isInfoWindowOpen = false;
   }
 }
