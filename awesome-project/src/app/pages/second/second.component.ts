@@ -32,22 +32,12 @@ export class SecondComponent {
 
     const dialogRef: MatDialogRef<ModalFormComponent, IDataFromModal> = this.dialog.open(ModalFormComponent, {
       width: '80%',
+      maxWidth: '400px',
       data: { action, rowData }
     });
 
     dialogRef.afterClosed().subscribe((result?: IDataFromModal) => {
-      if (result?.data) {
-        switch (result.event) {
-          case 'add':
-            this.addNewLocation(result);
-            break;
-          case 'edit':
-            this.updateLocation(result);
-            break;
-          default:
-            return;
-        }
-      }
+      this.handleOnCloseEvent(result);
     });
   }
 
@@ -58,7 +48,23 @@ export class SecondComponent {
 
   private updateLocation(locationData: IDataFromModal): void {
     const editedData: ILocationData = this.dataTransformService.convertToTableFormat(locationData.data);
+
     this.dataSource[this.editItemIndex] = { ...editedData };
     this.table.renderRows();
+  }
+
+  private handleOnCloseEvent(dataFromModal?: IDataFromModal): void {
+    if (dataFromModal?.data) {
+      switch (dataFromModal.event) {
+        case 'add':
+          this.addNewLocation(dataFromModal);
+          break;
+        case 'edit':
+          this.updateLocation(dataFromModal);
+          break;
+        default:
+          return;
+      }
+    }
   }
 }

@@ -16,8 +16,8 @@ export class DataTransformService {
     }
 
     const coordinates: number[] = [];
-    coordinates.push(+locationData.longitude);
     coordinates.push(+locationData.latitude);
+    coordinates.push(+locationData.longitude);
 
     return { name: locationData.name, coordinates }
   }

@@ -27,11 +27,7 @@ export class ModalFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.dataToEdit && this.dataToEdit.rowData) {
-      const formatedData: ILocationFormData = this.dataTransformService.convertToModalFormat(this.dataToEdit.rowData);
-      this.locationData = { ...formatedData };
-    }
-
+    this.prepareData();
     this.initializeForm();
   }
 
@@ -41,6 +37,13 @@ export class ModalFormComponent implements OnInit {
 
   public onDoActionClick(): void {
     this.dialogRef.close({ event: this.dataToEdit.action, data: this.location.value });
+  }
+
+  private prepareData(): void {
+    if (this.dataToEdit && this.dataToEdit.rowData) {
+      const formatedData: ILocationFormData = this.dataTransformService.convertToModalFormat(this.dataToEdit.rowData);
+      this.locationData = { ...formatedData };
+    }
   }
 
   private initializeForm(): void {
@@ -54,6 +57,6 @@ export class ModalFormComponent implements OnInit {
       longitude: new FormControl(this.locationData.longitude, [
         Validators.required,
       ]),
-     })
+    })
   }
 }

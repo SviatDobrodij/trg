@@ -1,1 +1,1 @@
-export type ModalActionsType = 'add' | 'edit';
+export type ModalActionsType = 'add' | 'edit' | 'close';

@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.markers = this.mainService.convertMarkersData(this.dataSource);
+    this.fillMarkers();
   }
 
   public openInfo(marker: MapAnchorPoint, markerInfo: IMarker): void {
@@ -38,5 +38,9 @@ export class MainComponent implements OnInit {
 
   public onInfoWindowClose(): void {
     this.isInfoWindowOpen = false;
+  }
+
+  private fillMarkers(): void {
+    this.markers = this.mainService.convertMarkersData(this.dataSource);
   }
 }
